@@ -6,12 +6,10 @@ import { QueryClientProvaders } from '../provader/QueryClientProvader';
 const RouterPage = () => {
 	return (
 		<BrowserRouter>
-			<QueryClientProvaders>
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/room/:id' element={<Room />} />
-				</Routes>
-			</QueryClientProvaders>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/room/:id' element={<Room />} />
+			</Routes>
 		</BrowserRouter>
 	);
 };
