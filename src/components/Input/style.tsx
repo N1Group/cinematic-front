@@ -1,30 +1,40 @@
 import styled from '@emotion/styled';
 
-export const $Input = styled.input(
+const $InputTextWrapper = styled.div({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: '4px'
+});
+
+const $InputWrapper = styled.div<{ width?: string; height?: string }>(
 	{
-		width: '327px',
-		padding: '14px',
-		outline: 'none',
-		height: '38px',
-		fontSize: '14px',
-		color: '#FFFFFF',
-		borderRadius: '8px',
-		position: 'relative',
-		border: '1px solid #3a3a3a',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 		background: '#222',
-		'&::after': {
-			content: '""',
-			background: 'url("/Icon.png") no-repeat center center / 100%',
-			position: 'absolute',
-			top: '50%',
-			width: '70%',
-			height: '70%',
-			transform: 'translate(-50%, -50%)',
-			left: '50%'
-		}
+		borderRadius: '8px',
+		border: '1px solid #3a3a3a',
+		padding: '14px'
 	},
-	props => ({
-		fontSize: props.size,
-		width: props.width
+	({ width, height }) => ({
+		width,
+		height
 	})
 );
+
+const $input = styled.input({
+	background: 'transparent',
+	border: 'none',
+	outline: 'none',
+	color: '#fff'
+});
+
+const $Label = styled.label({
+	fontSize: '12px'
+});
+
+const $Description = styled.p({
+	fontSize: '12px'
+});
+
+export { $InputTextWrapper, $InputWrapper, $input, $Label, $Description };

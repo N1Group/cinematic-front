@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 
-export const $Avatar = styled.div<{ url?: string }>(
+import { AvatarProps } from './types';
+
+export const $Avatar = styled.div<AvatarProps>(
 	{
-		border: '1px solid #3A3A3A',
-		borderRadius: '8px',
-		width: '36px',
-		height: '36px',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
-	({ url }) => ({
-		background: `url(${url}) no-repeat center center / 100%`
+	({ url, ischat, isSystemMessage, size }) => ({
+		borderRadius: `${ischat ? '50%' : '8px'}`,
+		width: `${size}px`,
+		height: `${size}px`,
+		border: `1px solid ${!ischat ? '#3A3A3A' : isSystemMessage ? '#2F2E4E' : '#373737'}`,
+		background: `url(${url}) no-repeat center center / cover`
 	})
 );

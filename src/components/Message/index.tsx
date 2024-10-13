@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import { $MessageSystem, $MessageContainer, $Message, $MessageAvatar, $MessageContent, $MessageNameWrapper, $MessageName, $MessageText } from './style';
+import { $MessageSystem, $MessageContainer, $Message, $MessageContent, $MessageNameWrapper, $MessageName, $MessageText } from './style';
+import { Avatar } from '../Avatar';
 
 interface Props {
-	isMessageUser?: boolean;
+	isMessageAuthor?: boolean;
 	isSystemMessage?: boolean;
 	text?: string;
 	color?: '#FFA049' | '#FF4949';
@@ -11,15 +12,15 @@ interface Props {
 	avatar?: string;
 }
 
-export const Message: FC<Props> = ({ isMessageUser, isSystemMessage, text, name, color, avatar }) => {
+export const Message: FC<Props> = ({ isMessageAuthor, isSystemMessage, text, name, color, avatar }) => {
 	return (
-		<$MessageContainer isMessageUser={isMessageUser}>
+		<$MessageContainer isMessageAuthor={isMessageAuthor}>
 			<$Message>
-				{isMessageUser ? null : <$MessageAvatar background={avatar ? '#222' : '#3F3D67'} border={`1px solid  ${avatar ? '#373737' : '#2F2E4E'}`} img={avatar ?? '/Icon.png'} />}
+				{!isMessageAuthor && <Avatar url={avatar} isSystemMessage={isSystemMessage} ischat />}
 				<$MessageContent>
 					<$MessageNameWrapper>
-						{isMessageUser ? null : <$MessageName>{name}</$MessageName>}
-						{isSystemMessage ? <$MessageSystem>Система</$MessageSystem> : null}
+						{!isMessageAuthor && <$MessageName>{name}</$MessageName>}
+						{isSystemMessage && <$MessageSystem>Система</$MessageSystem>}
 					</$MessageNameWrapper>
 					<$MessageText color={color}>{text}</$MessageText>
 				</$MessageContent>

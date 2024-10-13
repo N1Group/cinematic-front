@@ -1,17 +1,19 @@
 import { FC } from 'react';
 import { $Button } from './style';
+import { Icon } from '../icon';
 
 interface Props {
 	children: React.ReactNode;
-	isPlay?: boolean;
+	LeftAndRight?: 'left' | 'right';
 	height?: string;
 }
 
-export const Button: FC<Props> = ({ children, isPlay, height }) => {
+export const Button: FC<Props> = ({ children, LeftAndRight, height }) => {
 	return (
 		<$Button height={height}>
-			{isPlay ? <img src='/LeftIcon.png' alt='' /> : null}
-			<p>{children}</p>
+			{LeftAndRight === 'left' && <Icon name='Plus' />}
+			{children}
+			{LeftAndRight === 'right' && <Icon name='Plus' />}
 		</$Button>
 	);
 };

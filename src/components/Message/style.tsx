@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-const $MessageContainer = styled.div<{ isMessageUser?: boolean }>(
+const $MessageContainer = styled.div<{ isMessageAuthor?: boolean }>(
 	{
 		display: 'flex',
 		width: '100%'
 	},
-	({ isMessageUser }) => ({
-		justifyContent: isMessageUser ? 'flex-end' : 'flex-start'
+	({ isMessageAuthor }) => ({
+		justifyContent: isMessageAuthor ? 'flex-end' : 'flex-start'
 	})
 );
 
@@ -21,30 +21,6 @@ const $Message = styled.div<{ width?: string; opacity?: string }>(
 	({ width, opacity }) => ({
 		width,
 		opacity
-	})
-);
-
-const $MessageAvatar = styled.div<{ background?: string; border?: string; img?: string }>(
-	{
-		width: '32px',
-		height: '32px',
-		position: 'relative',
-		background: '#a14444',
-		borderRadius: '50%'
-	},
-	({ background, border, img }) => ({
-		background,
-		border,
-		'&::after': {
-			content: '""',
-			background: `url("${img} ") no-repeat center center / 100%`,
-			position: 'absolute',
-			top: '50%',
-			width: '70%',
-			height: '70%',
-			transform: 'translate(-50%, -50%)',
-			left: '50%'
-		}
 	})
 );
 
@@ -92,4 +68,4 @@ const $MessageSystem = styled.p({
 	fontSize: '14px'
 });
 
-export { $MessageSystem, $MessageContainer, $Message, $MessageAvatar, $MessageContent, $MessageNameWrapper, $MessageName, $MessageText };
+export { $MessageSystem, $MessageContainer, $Message, $MessageContent, $MessageNameWrapper, $MessageName, $MessageText };
