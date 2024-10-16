@@ -13,10 +13,9 @@ import {
   $TextRoom,
 } from './style';
 import { culculateLeft } from './utils/calculateLeft';
+import { RoomCardProps } from './types';
 
-type RoomCardProps = {
-  index: number;
-};
+
 
 export const RoomCard: FC<RoomCardProps> = ({ index }) => {
   const navigate = useNavigate();

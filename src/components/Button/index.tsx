@@ -1,12 +1,9 @@
-import { FC, HTMLAttributes } from 'react';
+import { FC } from 'react';
 import { Icon } from '../icon';
 import { $Button } from './style';
+import { ButtonProps } from './types';
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  leftAndRight?: 'left' | 'right';
-  height?: string;
-}
+
 
 export const Button: FC<ButtonProps> = ({ children, leftAndRight, height, ...props }) => {
   return (

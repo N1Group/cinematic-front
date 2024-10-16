@@ -3,13 +3,11 @@ import { $UserInfo } from './style';
 
 import { Avatar } from '../Avatar';
 import { Text } from '../Text';
+import { UserInfoProps } from './types';
 
-interface Props {
-  userName?: string;
-  avatarUrl?: string;
-}
 
-export const UserInfo: FC<Props> = ({ avatarUrl, userName }) => {
+
+export const UserInfo: FC<UserInfoProps> = ({ avatarUrl, userName }) => {
   return (
     <$UserInfo>
       <Text type={'h2'}>{userName}</Text>

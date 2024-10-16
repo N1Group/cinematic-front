@@ -9,18 +9,11 @@ import {
   $MessageText,
 } from './style';
 import { Avatar } from '../Avatar';
+import { MessageProps } from './types';
 
-interface Props {
-  isMessageAuthor?: boolean;
-  isSystemMessage?: boolean;
-  text?: string;
-  color?: '#FFA049' | '#FF4949';
-  name?: string;
-  bgColor?: string;
-  avatar?: string;
-}
 
-export const Message: FC<Props> = ({ isMessageAuthor, isSystemMessage, text, name, color, avatar }) => {
+
+export const Message: FC<MessageProps> = ({ isMessageAuthor, isSystemMessage, text, name, color, avatar }) => {
   return (
     <$MessageContainer isMessageAuthor={isMessageAuthor}>
       <$Message>
