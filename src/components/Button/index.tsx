@@ -4,16 +4,16 @@ import { Icon } from '../icon';
 
 interface Props {
 	children: React.ReactNode;
-	LeftAndRight?: 'left' | 'right';
+	leftAndRight?: 'left' | 'right';
 	height?: string;
 }
 
-export const Button: FC<Props> = ({ children, LeftAndRight, height }) => {
+export const Button: FC<Props> = ({ children, leftAndRight, height }) => {
 	return (
 		<$Button height={height}>
-			{LeftAndRight === 'left' && <Icon name='Plus' />}
+			{leftAndRight === 'left' && <Icon name='Plus' />}
 			{children}
-			{LeftAndRight === 'right' && <Icon name='Plus' />}
+			{leftAndRight === 'right' && <Icon name='Plus' />}
 		</$Button>
 	);
 };
