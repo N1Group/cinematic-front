@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, HTMLAttributes } from 'react';
 import { Icon } from '../icon';
 import { $Description, $InputTextWrapper, $InputWrapper, $Label, $input } from './style';
-interface Props {
+interface Props extends HTMLAttributes<HTMLInputElement>  {
   iconLeft?: string;
   label?: string;
   width: string;

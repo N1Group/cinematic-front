@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <$Header>
       {pathname === '/' ? (
-        <Button height='42px' leftAndRight='left'>
+        <Button  height='42px' leftAndRight='left'>
           Создать комнату
         </Button>
       ) : (
