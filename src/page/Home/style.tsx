@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const $RoomCardWrapper = styled.div({
-  display: 'flex',
+  display: 'grid',
   gap: '10px',
   padding: '10px 20px',
-  flexWrap: 'wrap',
+  gridTemplateColumns: 'repeat(auto-fill, 350px)',
 });
