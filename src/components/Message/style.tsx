@@ -14,7 +14,7 @@ const $Message = styled.div<{ width?: string; opacity?: string }>(
   {
     display: 'flex',
     maxWidth: '320px',
-    width: '100%',
+    width: '80%',
     alignItems: 'flex-end',
     gap: '10px',
   },
