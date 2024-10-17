@@ -9,11 +9,11 @@ export const Header = () => {
   return (
     <$Header>
       {pathname === '/' ? (
-        <Button  height='42px' leftAndRight='left'>
+        <Button height='42px' leftAndRight='left'>
           Создать комнату
         </Button>
       ) : (
-        <Input height='40px' width='327px' />
+        <Input iconRight='Plus' height='40px' width='327px' />
       )}
       <UserInfo avatarUrl='/c1f2a18863a127d71251dd0740442806.jpg' userName='@daniaaa1717' />
     </$Header>
