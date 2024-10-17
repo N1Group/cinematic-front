@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from 'react';
 import { Icon } from '../icon';
 import { $Description, $InputTextWrapper, $InputWrapper, $Label, $input } from './style';
-interface Props extends HTMLAttributes<HTMLInputElement>  {
+interface Props extends HTMLAttributes<HTMLInputElement> {
   iconLeft?: string;
   label?: string;
   width: string;
@@ -17,9 +17,9 @@ export const Input: FC<Props> = ({ iconLeft, iconRight, description, label, widt
       <$InputWrapper width={width} height={height}>
         {iconLeft && <Icon name='Plus' />}
         <$input placeholder='Placeholder' />
+        {iconRight && <Icon name='Plus' />}
       </$InputWrapper>
       {description && <$Description>{description}</$Description>}
-      {iconRight && <Icon name='Plus' />}
     </$InputTextWrapper>
   );
 };
