@@ -2,15 +2,23 @@ import { useParams } from 'react-router-dom';
 import { Input } from '../../components/Input';
 import { Message } from '../../components/Message';
 import { $Chat, $InputContainer, $MessageWrapper, $RoomWrapper, $Video } from './style';
+import { useEffect, useRef } from 'react';
 
 export const Room = () => {
   const { id } = useParams();
+  const MessageWrapperRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (MessageWrapperRef.current) {
+      MessageWrapperRef.current.scroll(0, MessageWrapperRef.current.scrollHeight);
+    }
+  }, []);
 
   return (
     <$RoomWrapper>
       <$Video></$Video>
       <$Chat>
-        <$MessageWrapper>
+        <$MessageWrapper ref={MessageWrapperRef}>
           <Message color='#FFA049' isSystemMessage name='Система' text='Добро пожаловать!' />
           <Message name='daniaaa1717' text='прнивет всем' />
           <Message name='artem228' text='прнивет всем' avatar='/c1f2a18863a127d71251dd0740442806.jpg' />
