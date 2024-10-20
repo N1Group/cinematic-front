@@ -25,6 +25,7 @@ const $InputWrapper = styled.div<{ width?: string; height?: string }>(
 const $input = styled.input({
   background: 'transparent',
   border: 'none',
+  width: '100%',
   outline: 'none',
   color: '#fff',
 });
