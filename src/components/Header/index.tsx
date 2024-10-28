@@ -13,7 +13,7 @@ export const Header = () => {
           Создать комнату
         </Button>
       ) : (
-        <Input iconRight='Plus' height='40px' width='327px' />
+        <Input iconRightText='Plus' height='40px' width='327px' />
       )}
       <UserInfo avatarUrl='/c1f2a18863a127d71251dd0740442806.jpg' userName='@daniaaa1717' />
     </$Header>

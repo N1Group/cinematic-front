@@ -2,22 +2,22 @@ import { FC, HTMLAttributes } from 'react';
 import { Icon } from '../icon';
 import { $Description, $InputTextWrapper, $InputWrapper, $Label, $input } from './style';
 interface Props extends HTMLAttributes<HTMLInputElement> {
-  iconLeft?: string;
+  iconRightText?: 'Avatar' | 'Plus' | 'AvatarSystem';
   label?: string;
   width: string;
   description?: string;
-  iconRight?: string;
+  iconLeftText?: 'Avatar' | 'Plus' | 'AvatarSystem';
   height?: string;
 }
 
-export const Input: FC<Props> = ({ iconLeft, iconRight, description, label, width, height }) => {
+export const Input: FC<Props> = ({ iconLeftText, iconRightText, description, label, width, height }) => {
   return (
     <$InputTextWrapper>
       {label && <$Label>{label}</$Label>}
       <$InputWrapper width={width} height={height}>
-        {iconLeft && <Icon name='Plus' />}
+        {iconLeftText && <Icon name={iconLeftText} />}
         <$input placeholder='Placeholder' />
-        {iconRight && <Icon name='Plus' />}
+        {iconRightText && <Icon name={iconRightText} />}
       </$InputWrapper>
       {description && <$Description>{description}</$Description>}
     </$InputTextWrapper>
