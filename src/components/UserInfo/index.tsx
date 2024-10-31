@@ -5,12 +5,10 @@ import { Avatar } from '../Avatar';
 import { Text } from '../Text';
 import { UserInfoProps } from './types';
 
-
-
 export const UserInfo: FC<UserInfoProps> = ({ avatarUrl, userName }) => {
   return (
     <$UserInfo>
-      <Text type={'h2'}>{userName}</Text>
+      <Text size={'h2'}>{userName}</Text>
       <Avatar url={avatarUrl!} />
     </$UserInfo>
   );

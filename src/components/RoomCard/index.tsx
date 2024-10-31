@@ -12,10 +12,8 @@ import {
   $RoomCard,
   $TextRoom,
 } from './style';
-import { culculateLeft } from './utils/calculateLeft';
 import { RoomCardProps } from './types';
-
-
+import { culculateLeft } from './utils/calculateLeft';
 
 export const RoomCard: FC<RoomCardProps> = ({ index }) => {
   const navigate = useNavigate();
@@ -40,7 +38,7 @@ export const RoomCard: FC<RoomCardProps> = ({ index }) => {
               );
             })}
           </$AvatarUserRoomWrappers>
-          <Text type='p'>5/5</Text>
+          <Text size='body2'>5/5</Text>
         </$AvatarUserRoomCount>
         <Button height='42px' onClick={() => navigate(`/room/${index}`)}>
           Подключиться

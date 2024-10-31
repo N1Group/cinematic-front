@@ -1,12 +1,16 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { $Text } from './style';
-import { TextProps } from './types';
 
+type TextSizes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'caption' | 'footnote';
 
+export type TextProps = {
+  size?: TextSizes;
+  color?: string;
+};
 
-export const Text: FC<TextProps> = ({ children, type, size }) => {
+export const Text: FC<PropsWithChildren<TextProps>> = ({ children, size = 'body1', color }) => {
   return (
-    <$Text size={size} TextType={type}>
+    <$Text className={`text-${size}`} color={color}>
       {children}
     </$Text>
   );

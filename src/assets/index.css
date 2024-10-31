@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
-
-:root {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #121212;
-}
+@import url('./font.css');
 
 * {
   box-sizing: border-box;
@@ -14,6 +10,6 @@
 
 body {
   min-height: 100vh;
-  font-weight: 400;
+  background-color: #121212;
   color: #ffffff;
 }
