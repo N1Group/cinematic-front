@@ -1,17 +1,15 @@
 import { FC } from 'react';
+import { Avatar } from '../Avatar';
 import {
-  $MessageSystem,
-  $MessageContainer,
   $Message,
+  $MessageContainer,
   $MessageContent,
-  $MessageNameWrapper,
   $MessageName,
+  $MessageNameWrapper,
+  $MessageSystem,
   $MessageText,
 } from './style';
-import { Avatar } from '../Avatar';
 import { MessageProps } from './types';
-
-
 
 export const Message: FC<MessageProps> = ({ isMessageAuthor, isSystemMessage, text, name, color, avatar }) => {
   return (
@@ -23,7 +21,7 @@ export const Message: FC<MessageProps> = ({ isMessageAuthor, isSystemMessage, te
             {!isMessageAuthor && <$MessageName>{name}</$MessageName>}
             {isSystemMessage && <$MessageSystem>Система</$MessageSystem>}
           </$MessageNameWrapper>
-          <$MessageText color={color}>{text}</$MessageText>
+          <$MessageText style={color}>{text}</$MessageText>
         </$MessageContent>
       </$Message>
     </$MessageContainer>

@@ -19,9 +19,3 @@ export const $Header = styled.div({
   flexDirection: 'column',
   gap: 8,
 });
-
-export const $Content = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 10,
-});

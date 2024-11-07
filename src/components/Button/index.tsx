@@ -1,16 +1,27 @@
-import { FC } from 'react';
-import { Icon } from '../icon';
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import { Icon, IconNames } from '../icon';
 import { $Button } from './style';
-import { ButtonProps } from './types';
 
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'style'> {
+  iconLeft?: IconNames;
+  iconRight?: IconNames;
+  style?: 'dark' | 'light';
+  centered?: boolean;
+}
 
-
-export const Button: FC<ButtonProps> = ({ children, leftAndRight, height, ...props }) => {
+export const Button: FC<PropsWithChildren<ButtonProps>> = ({
+  children,
+  iconLeft,
+  iconRight,
+  style = 'dark',
+  centered = true,
+  ...props
+}) => {
   return (
-    <$Button height={height} {...props}>
-      {leftAndRight === 'left' && <Icon name='Plus' />}
+    <$Button buttonStyle={style} centered={centered} {...props}>
+      {iconLeft && <Icon name={iconLeft} />}
       {children}
-      {leftAndRight === 'right' && <Icon name='Plus' />}
+      {iconRight && <Icon name={iconRight} />}
     </$Button>
   );
 };
