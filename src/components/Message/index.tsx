@@ -21,7 +21,7 @@ export const Message: FC<MessageProps> = ({ isMessageAuthor, isSystemMessage, te
             {!isMessageAuthor && <$MessageName>{name}</$MessageName>}
             {isSystemMessage && <$MessageSystem>Система</$MessageSystem>}
           </$MessageNameWrapper>
-          <$MessageText style={color}>{text}</$MessageText>
+          <$MessageText color={color}>{text}</$MessageText>
         </$MessageContent>
       </$Message>
     </$MessageContainer>

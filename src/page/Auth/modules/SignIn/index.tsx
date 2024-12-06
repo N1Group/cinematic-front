@@ -1,9 +1,9 @@
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Modal } from '@/modules/Modal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
-export const SignIn = () => {
+export default function SignIn() {
   const nav = useNavigate();
 
   return (
@@ -18,4 +18,4 @@ export const SignIn = () => {
       </Modal.Actions>
     </Modal>
   );
-};
+}

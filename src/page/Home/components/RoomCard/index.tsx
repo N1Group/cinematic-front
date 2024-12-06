@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../Button';
-import { Text } from '../Text';
+import { useNavigate } from 'react-router';
+import { Button } from '../../../../components/Button';
+import { Text } from '../../../../components/Text';
 import {
   $AvatarUserRoom,
   $AvatarUserRoomCount,
@@ -40,9 +40,7 @@ export const RoomCard: FC<RoomCardProps> = ({ index }) => {
           </$AvatarUserRoomWrappers>
           <Text size='body2'>5/5</Text>
         </$AvatarUserRoomCount>
-        <Button height='42px' onClick={() => navigate(`/room/${index}`)}>
-          Подключиться
-        </Button>
+        <Button onClick={() => navigate(`/room/${index}`)}>Подключиться</Button>
       </$AvatarUserRoomWrapper>
     </$RoomCard>
   );

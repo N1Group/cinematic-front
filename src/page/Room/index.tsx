@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Input } from '../../components/Input';
 import { $Chat, $InputContainer, $MessageWrapper, $RoomWrapper, $Video } from './style';
 
-export const Room = () => {
+export default function Room() {
   // const { id } = useParams();
   const MessageWrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,4 +23,4 @@ export const Room = () => {
       </$Chat>
     </$RoomWrapper>
   );
-};
+}

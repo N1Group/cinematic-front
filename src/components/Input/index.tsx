@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
-import { Icon, IconNames } from '../icon';
 import { Text } from '../Text';
+import { Icon, IconNames } from '../icon';
 import { $input, $InputTextWrapper, $InputWrapper } from './style';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

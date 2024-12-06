@@ -1,14 +1,14 @@
-import { FC } from 'react';
 import { $UserInfo } from './style';
 
+import type { FC } from 'react';
 import { Avatar } from '../Avatar';
 import { Text } from '../Text';
-import { UserInfoProps } from './types';
+import type { UserInfoProps } from './types';
 
 export const UserInfo: FC<UserInfoProps> = ({ avatarUrl, userName }) => {
   return (
     <$UserInfo>
-      <Text size={'h2'}>{userName}</Text>
+      <Text size='body2'>@{userName}</Text>
       <Avatar url={avatarUrl!} />
     </$UserInfo>
   );

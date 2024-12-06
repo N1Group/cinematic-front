@@ -52,7 +52,7 @@ const $AvatarUserRoom = styled.div<{ left?: string; index?: number; opacity?: st
     left: '0',
     width: '30px',
     height: '30px',
-    background: 'url("/c1f2a18863a127d71251dd0740442806.jpg") no-repeat center center / 100%',
+    background: '#141414',
   },
   ({ left, index, opacity }) => ({
     left,
@@ -75,8 +75,8 @@ const $AvatarUserRoomWrappers = styled.div<{ width?: string }>(
 export {
   $AvatarUserRoom,
   $AvatarUserRoomCount,
-  $AvatarUserRoomWrappers,
   $AvatarUserRoomWrapper,
+  $AvatarUserRoomWrappers,
   $DescriptionRoom,
   $RommInfo,
   $RoomCard,

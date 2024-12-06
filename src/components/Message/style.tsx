@@ -55,7 +55,7 @@ const $MessageText = styled.p<{ color?: '#FFA049' | '#FF4949' }>(
     fontSize: '14px',
     marginTop: '2px',
   },
-  ({ style: color }) => ({
+  ({ color }) => ({
     color,
   }),
 );

@@ -4,29 +4,35 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start:dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start:dev": "react-router dev",
+    "build": "react-router build",
+    "typecheck": "react-router typegen && tsc",
+    "start": "react-router-serve ./dist/server/index.js"
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
+    "@react-router/node": "^7.0.2",
+    "@react-router/serve": "^7.0.2",
     "@tanstack/react-query": "^5.59.16",
+    "axios": "^1.7.9",
+    "framer-motion": "^11.13.1",
+    "isbot": "^5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0"
+    "react-router": "^7.0.2",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@react-router/dev": "^7.0.2",
     "@swc/core": "^1.7.42",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "@vitejs/plugin-react-swc": "^3.7.1",
-    "eslint": "^9.14.0",
     "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.12.2",
     "vite": "^5.4.10"
   }
 }

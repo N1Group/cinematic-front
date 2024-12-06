@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import { Icon } from '../icon';
 import { $Avatar } from './style';
 import { AvatarProps } from './types';
-import { Icon } from '../icon';
 
 export const Avatar: FC<Omit<AvatarProps, 'size'>> = ({ url, ischat, isSystemMessage }) => {
   return (
