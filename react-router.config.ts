@@ -4,5 +4,5 @@ export default {
   appDirectory: 'src',
   future: { unstable_optimizeDeps: true },
   buildDirectory: 'dist',
-  ssr: true,
+  ssr: false,
 } satisfies Config;

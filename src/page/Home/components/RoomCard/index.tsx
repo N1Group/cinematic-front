@@ -1,3 +1,4 @@
+import { Room } from '@/types/Room';
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '../../../../components/Button';
@@ -15,19 +16,21 @@ import {
 import { RoomCardProps } from './types';
 import { culculateLeft } from './utils/calculateLeft';
 
-export const RoomCard: FC<RoomCardProps> = ({ index }) => {
+type RoomCardProps = Room;
+
+export const RoomCard: FC<RoomCardProps> = ({ name, id, members, nowPlaying }) => {
   const navigate = useNavigate();
 
   return (
     <$RoomCard>
       <$RommInfo>
-        <$TextRoom>Комната 1</$TextRoom>
-        <$DescriptionRoom>Сейчас играет: Фильм полицейский с рублевки</$DescriptionRoom>
+        <$TextRoom>Комната {name}</$TextRoom>
+        <$DescriptionRoom>Сейчас играет: {nowPlaying}</$DescriptionRoom>
       </$RommInfo>
       <$AvatarUserRoomWrapper>
         <$AvatarUserRoomCount>
           <$AvatarUserRoomWrappers width={`${37 + 5 * 13}px`}>
-            {[...Array(5)].map((_, index, arr) => {
+            {members?.map((_, index, arr) => {
               return (
                 <$AvatarUserRoom
                   key={index}
@@ -38,9 +41,9 @@ export const RoomCard: FC<RoomCardProps> = ({ index }) => {
               );
             })}
           </$AvatarUserRoomWrappers>
-          <Text size='body2'>5/5</Text>
+          <Text size='body2'>{members?.length || 0} / 5</Text>
         </$AvatarUserRoomCount>
-        <Button onClick={() => navigate(`/room/${index}`)}>Подключиться</Button>
+        <Button onClick={() => navigate(`/room/${id}`)}>Подключиться</Button>
       </$AvatarUserRoomWrapper>
     </$RoomCard>
   );

@@ -8,10 +8,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string;
   iconLeft?: IconNames;
   iconRight?: IconNames;
+  invalid?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, description, iconLeft, iconRight, ...props }, ref) => {
+  ({ label, description, iconLeft, iconRight, invalid, ...props }, ref) => {
     return (
       <$InputTextWrapper>
         {label && <Text size='body2'>{label}</Text>}
@@ -20,7 +21,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <$input className='text-body2' ref={ref} {...props} />
           {iconRight && <Icon name={iconRight} />}
         </$InputWrapper>
-        {description && <Text size='body2'>{description}</Text>}
+        {description && (
+          <Text size='body2' color={invalid ? '#FF6262' : '#FFF'}>
+            {description}
+          </Text>
+        )}
       </$InputTextWrapper>
     );
   },

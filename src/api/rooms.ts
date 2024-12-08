@@ -1,5 +1,3 @@
 import { Room } from '@/types/Room';
 
-export type GetAllRooms = {
-  rooms: Room[];
-};
+export type GetAllRooms = Room[];

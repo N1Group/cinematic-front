@@ -1,5 +1,3 @@
-import { User } from '@/types/user';
+import { User } from '@/types/User';
 
-export type GetUserProfile = {
-  user: User | null;
-};
+export type GetUserProfile = User | null;

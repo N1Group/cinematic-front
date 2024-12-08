@@ -1,6 +1,6 @@
 import { GetAllRooms } from '@/api/rooms';
 import { apiClient } from '@/utils/apiClient';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const useGetAllRooms = () => {
   const query = useQuery({
@@ -8,7 +8,16 @@ export const useGetAllRooms = () => {
     queryFn: async () => apiClient<GetAllRooms>({ url: '/rooms' }).then((res) => res.result),
   });
 
-  console.log(query.data);
-
   return query;
+};
+
+export const useCreateRoom = () => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationKey: ['room/create'],
+    mutationFn: async () => apiClient({ url: '/room/create', method: 'POST' }).then((res) => res.result),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['rooms'] }),
+  });
+
+  return mutation;
 };

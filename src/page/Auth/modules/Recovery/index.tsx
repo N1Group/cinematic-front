@@ -11,7 +11,7 @@ export const HydrateFallback = () => {
   return <p>Loading...</p>;
 };
 
-export default function Recovery() {
+export const Recovery = () => {
   const randomActionWords = ['Запушить', 'Отправить', 'Закинуть', 'Скинуть', 'Крашнуть сервер'];
   const randomIndex = Math.floor(Math.random() * randomActionWords.length);
   const randomActionWord = randomActionWords[randomIndex];
@@ -35,4 +35,4 @@ export default function Recovery() {
       </Modal.Actions>
     </Modal>
   );
-}
+};

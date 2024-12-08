@@ -2,7 +2,7 @@ import { CodeInputs } from '@/components/CodeInputs';
 import { Modal } from '@/modules/Modal';
 import { useNavigate } from 'react-router';
 
-export default function RecoveryCode() {
+export const RecoveryCode = () => {
   const nav = useNavigate();
 
   const onChangeCode = (value: string) => {
@@ -18,4 +18,4 @@ export default function RecoveryCode() {
       </Modal.Content>
     </Modal>
   );
-}
+};

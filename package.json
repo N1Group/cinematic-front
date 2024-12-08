@@ -1,38 +1,53 @@
 {
-  "name": "front",
+  "name": "dashboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start:dev": "react-router dev",
-    "build": "react-router build",
-    "typecheck": "react-router typegen && tsc",
-    "start": "react-router-serve ./dist/server/index.js"
+    "start:dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:dev": "tsc -b && vite build -m development",
+    "build:types": "tsc -b --noEmit",
+    "preview": "pnpm build && vite preview --port 5173",
+    "prepare": "husky"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
   },
   "dependencies": {
-    "@emotion/styled": "^11.13.0",
-    "@react-router/node": "^7.0.2",
-    "@react-router/serve": "^7.0.2",
-    "@tanstack/react-query": "^5.59.16",
-    "axios": "^1.7.9",
-    "framer-motion": "^11.13.1",
-    "isbot": "^5",
+    "@radix-ui/react-popover": "^1.1.2",
+    "@tanstack/react-query": "^5.61.5",
+    "axios": "^1.7.8",
+    "date-fns": "^3.6.0",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.12.0",
     "react": "^18.3.1",
+    "react-day-picker": "^9.4.0",
     "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.1.2",
     "react-router": "^7.0.2",
-    "zustand": "^5.0.2"
+    "socket.io-client": "^4.8.1",
+    "socket.io-react-hook": "^2.4.5",
+    "ua-parser-js": "^2.0.0",
+    "yup": "^1.4.0",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.0.2",
-    "@swc/core": "^1.7.42",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
-    "@vitejs/plugin-react-swc": "^3.7.1",
-    "globals": "^15.11.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.10"
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitejs/plugin-react-swc": "^3.7.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.1",
+    "sass": "^1.81.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-mkcert": "^1.17.6"
   }
 }
