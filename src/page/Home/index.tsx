@@ -1,5 +1,5 @@
+import { useGetAllRooms } from '../../services/rooms';
 import { RoomCard } from './components/RoomCard';
-import { useGetAllRooms } from './service';
 import { $RoomCards } from './style';
 
 export const Home = () => {

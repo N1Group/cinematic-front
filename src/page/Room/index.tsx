@@ -9,8 +9,9 @@ export const Room = () => {
   // const { id } = useParams();
   const MessageWrapperRef = useRef<HTMLDivElement | null>(null);
   const showBackConfirmModal = useRoomStore((state) => state.showBackConfirmModal);
+  const selectedRoom = useRoomStore((state) => state.selectedRoom);
 
-  const { proceed } = useNavBlocker(() => showBackConfirmModal(true));
+  const { proceed } = useNavBlocker(() => showBackConfirmModal(true), selectedRoom && selectedRoom?.members.length > 0);
 
   useEffect(() => {
     showBackConfirmModal(false);

@@ -1,10 +1,11 @@
+import { useRoomStore } from '@/page/Room/store';
 import { useUserStore } from '@/stores/user';
 import { Room } from '@/types/Room';
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '../../../../components/Button';
 import { Text } from '../../../../components/Text';
-import { useJoinRoom } from '../../service';
+import { useJoinRoom } from '../../../../services/rooms';
 import {
   $AvatarUserRoom,
   $AvatarUserRoomCount,
@@ -19,14 +20,16 @@ import { culculateLeft } from './utils/calculateLeft';
 
 type RoomCardProps = Room;
 
-export const RoomCard: FC<RoomCardProps> = ({ name, id, members, nowPlaying }) => {
+export const RoomCard: FC<RoomCardProps> = (room) => {
   const navigate = useNavigate();
   const user = useUserStore((state) => state.user);
+  const setSelectedRoom = useRoomStore((state) => state.setSelectedRoom);
   const { mutateAsync: joinRoom } = useJoinRoom();
 
   const onJoinRoom = async () => {
-    await joinRoom({ roomId: id, userId: user!.id });
-    navigate(`/room/${id}`);
+    await joinRoom({ roomId: room.id, userId: user!.id });
+    setSelectedRoom(room);
+    navigate(`/room/${room.id}`);
   };
 
   if (!user) return;
@@ -34,13 +37,13 @@ export const RoomCard: FC<RoomCardProps> = ({ name, id, members, nowPlaying }) =
   return (
     <$RoomCard>
       <$RommInfo>
-        <$TextRoom>Комната {name}</$TextRoom>
-        <$DescriptionRoom>Сейчас играет: {nowPlaying}</$DescriptionRoom>
+        <$TextRoom>Комната {room.name}</$TextRoom>
+        <$DescriptionRoom>Сейчас играет: {room.nowPlaying}</$DescriptionRoom>
       </$RommInfo>
       <$AvatarUserRoomWrapper>
         <$AvatarUserRoomCount>
           <$AvatarUserRoomWrappers>
-            {members?.map((_, index, arr) => {
+            {room.members?.map((_, index, arr) => {
               return (
                 <$AvatarUserRoom
                   key={index}
@@ -51,7 +54,7 @@ export const RoomCard: FC<RoomCardProps> = ({ name, id, members, nowPlaying }) =
               );
             })}
           </$AvatarUserRoomWrappers>
-          <Text size='body2'>{`${members?.length || 0} / 5`}</Text>
+          <Text size='body2'>{`${room.members?.length || 0} / 5`}</Text>
         </$AvatarUserRoomCount>
         <Button onClick={onJoinRoom}>Подключиться</Button>
       </$AvatarUserRoomWrapper>

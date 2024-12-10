@@ -7,7 +7,7 @@ type RoomStates = {
 };
 
 type RoomActions = {
-  setSelectedRoom: (room: Room) => void;
+  setSelectedRoom: (room?: Room) => void;
   showBackConfirmModal: (show: boolean) => void;
 };
 

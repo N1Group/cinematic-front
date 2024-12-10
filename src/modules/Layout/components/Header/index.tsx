@@ -1,4 +1,5 @@
-import { useCreateRoom } from '@/page/Home/service';
+import { useRoomStore } from '@/page/Room/store';
+import { useCreateRoom } from '@/services/rooms';
 import { useGetUserProfile } from '@/services/user';
 import { useLocation, useNavigate } from 'react-router';
 import { Button } from '../../../../components/Button';
@@ -16,10 +17,12 @@ export const Header = () => {
   const { pathname } = useLocation();
   const { data } = useGetUserProfile();
   const { mutateAsync: createRoom } = useCreateRoom();
+  const setSelectedRoom = useRoomStore((state) => state.setSelectedRoom);
   const nav = useNavigate();
 
   const onCreateRoom = async () => {
     const room = await createRoom();
+    setSelectedRoom(room);
     nav(`/room/${room.id}`);
   };
 

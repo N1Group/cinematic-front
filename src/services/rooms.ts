@@ -1,4 +1,4 @@
-import { GetAllRoomsRequest, JoinRoomRequest } from '@/types/api/rooms';
+import { GetAllRoomsRequest, RoomActionRequest } from '@/types/api/rooms';
 import { Room } from '@/types/Room';
 import { apiClient } from '@/utils/apiClient';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -18,9 +18,23 @@ export const useGetAllRooms = () => {
 export const useJoinRoom = () => {
   const mutation = useMutation({
     mutationKey: ['room/join'],
-    mutationFn: async ({ roomId, userId }: JoinRoomRequest) =>
+    mutationFn: async ({ roomId, userId }: RoomActionRequest) =>
       apiClient<Room>({
         url: `/room/join/${roomId}`,
+        method: 'POST',
+        data: { userId },
+      }).then((res) => res.result),
+  });
+
+  return mutation;
+};
+
+export const useLeaveRoom = () => {
+  const mutation = useMutation({
+    mutationKey: ['room/leave'],
+    mutationFn: async ({ roomId, userId }: RoomActionRequest) =>
+      apiClient({
+        url: `/room/leave/${roomId}`,
         method: 'POST',
         data: { userId },
       }).then((res) => res.result),
