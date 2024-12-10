@@ -13,6 +13,7 @@ export const Room = () => {
   const { proceed } = useNavBlocker(() => showBackConfirmModal(true));
 
   useEffect(() => {
+    showBackConfirmModal(false);
     if (MessageWrapperRef.current) {
       MessageWrapperRef.current.scroll(0, MessageWrapperRef.current.scrollHeight);
     }

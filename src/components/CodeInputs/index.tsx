@@ -12,7 +12,6 @@ export const CodeInputs: FC<CodeInputsProps> = ({ onChange }) => {
   const refs = useRef<(HTMLInputElement | null)[]>([]);
 
   const _onChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-    // console.log(event.target.value, index);
     if (!event.target.value) {
       refs.current[index - 1]?.focus();
       setCodeArray((codeArray) => [...codeArray.slice(0, index), '']);
@@ -30,7 +29,9 @@ export const CodeInputs: FC<CodeInputsProps> = ({ onChange }) => {
     <$CodeInputs>
       {inputArray.map((_, index) => (
         <Input
-          ref={(el) => (refs.current[index] = el)}
+          ref={(el) => {
+            refs.current[index] = el;
+          }}
           key={index}
           data-index={index}
           onChange={(e) => _onChange(e, index)}
