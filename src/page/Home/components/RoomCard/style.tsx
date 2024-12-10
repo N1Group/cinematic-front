@@ -61,16 +61,11 @@ const $AvatarUserRoom = styled.div<{ left?: string; index?: number; opacity?: st
   }),
 );
 
-const $AvatarUserRoomWrappers = styled.div<{ width?: string }>(
-  {
-    position: 'relative',
-    height: '100%',
-    display: 'flex',
-  },
-  ({ width }) => ({
-    width,
-  }),
-);
+const $AvatarUserRoomWrappers = styled.div({
+  position: 'relative',
+  height: '100%',
+  display: 'flex',
+});
 
 export {
   $AvatarUserRoom,

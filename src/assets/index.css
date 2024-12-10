@@ -13,3 +13,13 @@ body {
   background-color: #121212;
   color: #ffffff;
 }
+
+
+*::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #313131;
+}

@@ -1,5 +1,5 @@
-import { $RoomCardWrapper } from '../../style';
+import { $RoomCards } from '../../style';
 
 export const HomeSceleton = () => {
-  return <$RoomCardWrapper>{/* <RoomCard></RoomCard> */}</$RoomCardWrapper>;
+  return <$RoomCards>{/* <RoomCard></RoomCard> */}</$RoomCards>;
 };

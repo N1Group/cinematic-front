@@ -6,13 +6,13 @@ import { useUserStore } from '@/stores/user';
 import { checkInput } from '@/utils/checkErrorInput';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
-import { useUserSignIn } from '../../service';
+import { useAuthSignIn } from '../../service';
 import { SignInSchema } from './schema';
 
 export const SignIn = () => {
   const nav = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
-  const { mutateAsync: signIn } = useUserSignIn();
+  const { mutateAsync: signIn } = useAuthSignIn();
 
   const formik = useFormik<SignInUser>({
     initialValues: {

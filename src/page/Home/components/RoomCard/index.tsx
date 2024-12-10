@@ -13,7 +13,6 @@ import {
   $RoomCard,
   $TextRoom,
 } from './style';
-import { RoomCardProps } from './types';
 import { culculateLeft } from './utils/calculateLeft';
 
 type RoomCardProps = Room;
@@ -29,7 +28,7 @@ export const RoomCard: FC<RoomCardProps> = ({ name, id, members, nowPlaying }) =
       </$RommInfo>
       <$AvatarUserRoomWrapper>
         <$AvatarUserRoomCount>
-          <$AvatarUserRoomWrappers width={`${37 + 5 * 13}px`}>
+          <$AvatarUserRoomWrappers>
             {members?.map((_, index, arr) => {
               return (
                 <$AvatarUserRoom

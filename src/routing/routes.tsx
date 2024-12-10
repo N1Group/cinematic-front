@@ -15,6 +15,7 @@ export const getRoutes = (user?: User): RouteObject[] => [
     path: '/',
     element: <Layout />,
     loader: unauthRegister(),
+    hydrateFallbackElement: <p>Loading...</p>,
     children: [
       {
         index: true,
@@ -30,6 +31,7 @@ export const getRoutes = (user?: User): RouteObject[] => [
     path: '/auth',
     element: <Auth />,
     loader: authLoader(),
+    hydrateFallbackElement: <p>Loading...</p>,
     children: [
       {
         index: true,

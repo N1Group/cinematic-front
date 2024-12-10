@@ -1,3 +1,4 @@
+import { useUserStore } from '@/stores/user';
 import { ApiExtendedConfig, ApiExtendedError } from '@/types/AxiosApi';
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 
@@ -6,14 +7,34 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-const refreshIgnoredUrls: string[] = [];
-const notifyIgnoredUrls: string[] = [];
+const refreshIgnoredUrls = ['/auth/refresh', '/auth/verify/code'];
+const notifyIgnoredUrls = ['/auth/refresh', '/user/avatar'];
 
 let isRefreshing = false;
 let refreshPromise: Promise<void> | null = null;
 let hasShownAuthError = false;
 
 const handleError = (error: ApiExtendedError) => {
+  if (error.config._retry) return Promise.reject(error);
+  const logout = useUserStore.getState().logout;
+  // const errorMessage = error.response?.data.message || 'Произошла неизвестная ошибка';
+
+  if (error.config?.url === '/auth/refresh' && error.response?.status === 401) {
+    if (hasShownAuthError) return Promise.reject(error);
+    logout();
+    // addNotify({
+    //   type: NotificationType.Error,
+    //   title: 'Вы не авторизованы',
+    // });
+    hasShownAuthError = true;
+  } else if (!notifyIgnoredUrls.includes(error.config?.url!)) {
+    // addNotify({
+    // type: NotificationType.Error,
+    // title: errorMessage,
+    // description: error.config?.url,
+    // });
+  }
+
   return Promise.reject(error);
 };
 
