@@ -1,4 +1,4 @@
-export type SignInUser = {
+export type SignInRequest = {
   username: string;
   password: string;
 };

@@ -1,5 +1,5 @@
-import { SignInUser } from '@/api/auth';
 import { useUserStore } from '@/stores/user';
+import { SignInRequest } from '@/types/api/auth';
 import { User } from '@/types/User';
 import { apiClient } from '@/utils/apiClient';
 import { useMutation } from '@tanstack/react-query';
@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 export const useAuthSignIn = () => {
   const mutation = useMutation({
     mutationKey: ['auth/signIn'],
-    mutationFn: (data: SignInUser) =>
+    mutationFn: (data: SignInRequest) =>
       apiClient<User>({
         url: '/auth/signIn',
         method: 'POST',

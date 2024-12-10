@@ -5,6 +5,8 @@ import { ModalContent } from './components/Content';
 type ModalBaseProps = {
   title?: string;
   description?: string;
+  open?: boolean;
+  onClose?: (value: boolean) => void;
 };
 
 export interface ModalComponents {

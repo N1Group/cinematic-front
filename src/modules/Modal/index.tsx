@@ -4,7 +4,9 @@ import { ModalContent } from './components/Content';
 import { $Header, $Modal } from './style';
 import { PopoverProps } from './types';
 
-export const Modal: PopoverProps = ({ title, description, children }) => {
+export const Modal: PopoverProps = ({ title, description, open, onClose, children }) => {
+  if (!open) return;
+
   return (
     <$Modal>
       {(title || description) && (

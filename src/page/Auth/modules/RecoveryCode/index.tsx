@@ -12,7 +12,8 @@ export const RecoveryCode = () => {
   return (
     <Modal
       title='Волшебные циферки'
-      description='Почти готово, осталось ввести код подтверждения отправленный на выбранный вами способ восстановления.'>
+      description='Почти готово, осталось ввести код подтверждения отправленный на выбранный вами способ восстановления.'
+      open>
       <Modal.Content>
         <CodeInputs onChange={onChangeCode} />
       </Modal.Content>

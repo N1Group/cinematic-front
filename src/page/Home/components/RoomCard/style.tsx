@@ -38,24 +38,21 @@ const $AvatarUserRoomWrapper = styled.div({
 
 const $AvatarUserRoomCount = styled.div({
   width: '100%',
-  height: '100%',
   display: 'flex',
   alignItems: 'center',
+  gap: '8px',
 });
 
 const $AvatarUserRoom = styled.div<{ left?: string; index?: number; opacity?: string }>(
   {
     border: '1px solid #3A3A3A',
     borderRadius: '8px',
-    position: 'absolute',
-    transform: 'translate(0px, 7px)',
-    left: '0',
     width: '30px',
     height: '30px',
     background: '#141414',
   },
   ({ left, index, opacity }) => ({
-    left,
+    padding: `-${left}`,
     opacity,
     zIndex: index,
   }),

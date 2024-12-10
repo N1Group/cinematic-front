@@ -24,7 +24,8 @@ export const Recovery = () => {
   return (
     <Modal
       title='Всякое бывает, а теперь к делу.'
-      description='Для восстановления пароля, напишите никнейм привязанный к вашему аккаунту.'>
+      description='Для восстановления пароля, напишите никнейм привязанный к вашему аккаунту.'
+      open>
       <Modal.Content>
         <Input label='Никнейм' placeholder='nickname' />
       </Modal.Content>

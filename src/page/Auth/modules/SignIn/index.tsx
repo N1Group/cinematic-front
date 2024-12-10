@@ -1,8 +1,8 @@
-import { SignInUser } from '@/api/auth';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Modal } from '@/modules/Modal';
 import { useUserStore } from '@/stores/user';
+import { SignInRequest } from '@/types/api/auth';
 import { checkInput } from '@/utils/checkErrorInput';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
@@ -14,7 +14,7 @@ export const SignIn = () => {
   const setUser = useUserStore((state) => state.setUser);
   const { mutateAsync: signIn } = useAuthSignIn();
 
-  const formik = useFormik<SignInUser>({
+  const formik = useFormik<SignInRequest>({
     initialValues: {
       username: '',
       password: '',
@@ -28,7 +28,7 @@ export const SignIn = () => {
   });
 
   return (
-    <Modal title='Привет!' description='Чтобы пользоваться нашим сервисом, мы просим авторизоваться.'>
+    <Modal title='Привет!' description='Чтобы пользоваться нашим сервисом, мы просим авторизоваться.' open>
       <Modal.Content>
         <Input
           name='username'
