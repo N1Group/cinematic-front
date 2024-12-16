@@ -28,3 +28,14 @@ export const useAuthLogout = () => {
 
   return mutation;
 };
+
+export const useAuthRefresh = () => {
+  const logout = useUserStore((state) => state.logout);
+  const mutation = useMutation({
+    mutationKey: ['auth/refresh'],
+    mutationFn: () => apiClient({ url: '/auth/refresh', method: 'POST' }).then((res) => res.result),
+    onSettled: logout,
+  });
+
+  return mutation;
+};
