@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { SocketProvider } from './providers/SocketProvider';
 import { getRoutes } from './routing/routes';
 import { useUserStore } from './stores/user';
 
@@ -17,8 +18,10 @@ export const App = () => {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <SocketProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </SocketProvider>
   );
 };

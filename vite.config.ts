@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react';
-// import babel from 'babel-plugin-react-compiler'
 import { defineConfig, loadEnv } from 'vite';
 
 // https://vitejs.dev/config/
