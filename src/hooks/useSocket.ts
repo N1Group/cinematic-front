@@ -2,22 +2,44 @@ import { SocketContext } from '@/providers/SocketProvider';
 import { ServerToClientEvents } from '@/types/Socket';
 import { useContext, useEffect } from 'react';
 
-type EventName = keyof ServerToClientEvents;
+export const useSocket = <E extends keyof ServerToClientEvents>({
+  name,
+  namespace,
+  enabled = true,
+  query,
+  onMessage,
+}: {
+  name?: E;
+  namespace?: string;
+  enabled?: boolean;
+  query?: Record<string, string>;
+  onMessage?: (data: ServerToClientEvents[E]) => void;
+}) => {
+  const context = useContext(SocketContext);
 
-type UseSocketProps<E extends EventName> = {
-  name: E;
-  onMessage: (data: ServerToClientEvents[E]) => void;
-};
+  if (!context) {
+    throw new Error('useSocket must be used within a SocketProvider');
+  }
 
-export const useSocket = <E extends EventName>({ name, onMessage }: UseSocketProps<E>) => {
-  const socket = useContext(SocketContext);
+  const { socket, setNamespace, setQuery } = context;
 
   useEffect(() => {
+    if (namespace) setNamespace(namespace);
+  }, [namespace]);
+
+  useEffect(() => {
+    if (query) setQuery(query);
+  }, [query]);
+
+  useEffect(() => {
+    if (!socket || !name || !onMessage || !enabled) return;
+
     socket.on(name, onMessage as any);
+
     return () => {
       socket.off(name, onMessage as any);
     };
-  }, []);
+  }, [socket, name, onMessage, enabled]);
 
   return { socket };
 };

@@ -1,10 +1,10 @@
+import { Button } from '@/components/Button';
+import { Input } from '@/components/Input';
+import { UserInfo } from '@/components/UserInfo';
 import { useRoomStore } from '@/page/Room/store';
 import { useCreateRoom } from '@/services/rooms';
 import { useGetUserProfile } from '@/services/user';
 import { useLocation, useNavigate } from 'react-router';
-import { Button } from '../../../../components/Button';
-import { Input } from '../../../../components/Input';
-import { UserInfo } from '../../../../components/UserInfo';
 import { $Header } from './style';
 
 // type HeaderProps = {

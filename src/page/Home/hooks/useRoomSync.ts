@@ -6,18 +6,11 @@ export const useRoomSync = () => {
   const queryClient = useQueryClient();
 
   useSocket({
-    name: 'room/create',
+    name: 'room/created',
+    namespace: 'rooms',
     onMessage: (data) => {
-      console.log('room/create', data);
+      console.log('room/created', data);
       queryClient.setQueryData(['rooms'], (oldData: Room[]) => [...oldData, data]);
-    },
-  });
-
-  useSocket({
-    name: 'room/delete',
-    onMessage: (data) => {
-      console.log('room/delete', data);
-      queryClient.setQueryData(['rooms'], (oldData: Room[]) => oldData.filter((room) => room.id !== data.id));
     },
   });
 };

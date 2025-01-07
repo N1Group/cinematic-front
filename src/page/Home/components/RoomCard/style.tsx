@@ -12,7 +12,7 @@ const $RoomCard = styled.div({
   background: '#1e1e1e',
 });
 
-const $RommInfo = styled.h2({
+const $RoomInfo = styled.div({
   display: 'flex',
   gap: '4px',
   flexDirection: 'column',
@@ -70,7 +70,7 @@ export {
   $AvatarUserRoomWrapper,
   $AvatarUserRoomWrappers,
   $DescriptionRoom,
-  $RommInfo,
+  $RoomInfo as $RommInfo,
   $RoomCard,
   $TextRoom,
 };

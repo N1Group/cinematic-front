@@ -6,7 +6,9 @@ export const useNavBlocker = (onBlock: () => void, enabled?: boolean) => {
 
   useEffect(() => {
     if (blocker.state === 'blocked') {
-      return onBlock();
+      // TODO: add proper blocker
+      blocker.proceed();
+      // return onBlock();
     }
   }, [blocker]);
 

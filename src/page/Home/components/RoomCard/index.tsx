@@ -1,11 +1,10 @@
+import { Button } from '@/components/Button';
+import { Text } from '@/components/Text';
 import { useRoomStore } from '@/page/Room/store';
 import { useUserStore } from '@/stores/user';
 import { Room } from '@/types/Room';
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
-import { Button } from '../../../../components/Button';
-import { Text } from '../../../../components/Text';
-import { useJoinRoom } from '../../../../services/rooms';
 import {
   $AvatarUserRoom,
   $AvatarUserRoomCount,
@@ -24,10 +23,10 @@ export const RoomCard: FC<RoomCardProps> = (room) => {
   const navigate = useNavigate();
   const user = useUserStore((state) => state.user);
   const setSelectedRoom = useRoomStore((state) => state.setSelectedRoom);
-  const { mutateAsync: joinRoom } = useJoinRoom();
+  // const { socket } = useSocket({ namespace: 'rooms' });
 
   const onJoinRoom = async () => {
-    await joinRoom({ roomId: room.id, userId: user!.id });
+    // socket.emit('room/join', room.id);
     setSelectedRoom(room);
     navigate(`/room/${room.id}`);
   };
