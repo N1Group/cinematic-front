@@ -11,11 +11,6 @@
     "preview": "pnpm build && vite preview --port 5173",
     "prepare": "husky"
   },
-  "packageManager": "pnpm@9.12.3",
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
-  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "11.14.0",
