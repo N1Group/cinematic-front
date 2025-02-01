@@ -3,7 +3,7 @@ import { createContext, FC, PropsWithChildren, useEffect, useMemo, useState } fr
 import { io, Socket } from 'socket.io-client';
 
 type ContextOptions = {
-  socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
+  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
   setNamespace: (namespace: string) => void;
   setQuery: (query: Record<string, string>) => void;
 };
@@ -13,16 +13,24 @@ export const SocketContext = createContext<ContextOptions | null>(null);
 export const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
   const [namespace, setNamespace] = useState<string>('rooms');
   const [query, setQuery] = useState<Record<string, string>>({});
-  const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents> | null>(null);
+  const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents>>();
+  // console.log(query, socket?._opts.query);
 
   useEffect(() => {
+    if (socket) {
+      socket.disconnect();
+    }
+
     // Создаем новый сокет при изменении namespace или query
     const newSocket = io(`${HOST}${namespace}`, {
       withCredentials: true,
-      autoConnect: true,
+      autoConnect: false,
       transports: ['websocket'],
-      query,
     });
+
+    newSocket.io.opts.query = { ...query };
+
+    newSocket.connect();
 
     newSocket.on('connect', () => console.log(`Connected to ${namespace}`));
     newSocket.on('disconnect', () => console.log(`Disconnected from ${namespace}`));
@@ -33,7 +41,7 @@ export const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
     return () => {
       newSocket.disconnect();
     };
-  }, [namespace, JSON.stringify(query)]);
+  }, [namespace, query]);
 
   const contextValue = useMemo(
     () => ({
@@ -44,5 +52,6 @@ export const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
     [socket],
   );
 
+  // @ts-ignore
   return <SocketContext.Provider value={contextValue}>{children}</SocketContext.Provider>;
 };

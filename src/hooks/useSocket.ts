@@ -33,6 +33,7 @@ export const useSocket = <E extends keyof ServerToClientEvents>({
 
   useEffect(() => {
     if (!socket || !name || !onMessage || !enabled) return;
+    // console.log(name, onMessage);
 
     socket.on(name, onMessage as any);
 
