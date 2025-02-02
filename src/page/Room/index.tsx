@@ -1,15 +1,14 @@
 import { useNavBlocker } from '@/hooks/useNavBlocker';
-import { useSocket } from '@/hooks/useSocket';
 import { useEffect, useRef } from 'react';
-import { useParams } from 'react-router';
 import { Input } from '../../components/Input';
+import { useRoomSync } from './hooks/useRoomSyns';
 import { BackConfirmModal } from './modules/BackConfirmModal';
 import { useRoomStore } from './store';
 import { $Chat, $InputContainer, $MessageWrapper, $RoomWrapper, $Video } from './style';
 
 export const Room = () => {
-  const { id } = useParams();
-  console.log(id);
+  useRoomSync();
+
   const MessageWrapperRef = useRef<HTMLDivElement | null>(null);
   const showBackConfirmModal = useRoomStore((state) => state.showBackConfirmModal);
   const selectedRoom = useRoomStore((state) => state.selectedRoom);
@@ -23,16 +22,16 @@ export const Room = () => {
     }
   }, []);
 
-  useSocket({
-    name: 'room/joined',
-    namespace: 'room',
-    query: {
-      roomId: id!,
-    },
-    onMessage: (user) => {
-      console.log('room/joined', user);
-    },
-  });
+  // useSocket({
+  // name: 'room/joined',
+  // namespace: 'room',
+  // query: {
+  // roomId: id!,
+  // },
+  // onMessage: (user) => {
+  // console.log('room/joined', user);
+  // },
+  // });
 
   return (
     <$RoomWrapper>

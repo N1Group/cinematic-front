@@ -1,6 +1,5 @@
 import { Button } from '@/components/Button';
 import { Text } from '@/components/Text';
-import { useSocket } from '@/hooks/useSocket';
 import { useRoomStore } from '@/page/Room/store';
 import { useUserStore } from '@/stores/user';
 import { Room } from '@/types/Room';
@@ -24,10 +23,8 @@ export const RoomCard: FC<RoomCardProps> = (room) => {
   const navigate = useNavigate();
   const user = useUserStore((state) => state.user);
   const setSelectedRoom = useRoomStore((state) => state.setSelectedRoom);
-  const { socket } = useSocket({ namespace: 'rooms' });
 
   const onJoinRoom = async () => {
-    socket.emit('room/join', room.id);
     setSelectedRoom(room);
     navigate(`/room/${room.id}`);
   };

@@ -29,6 +29,7 @@
     "react-router": "^7.1.1",
     "socket.io-client": "^4.8.1",
     "ua-parser-js": "^2.0.0",
+    "use-sync-external-store": "^1.4.0",
     "yup": "^1.6.1",
     "zustand": "^5.0.2"
   },
@@ -41,5 +42,10 @@
     "typescript": "5.8.0-dev.20241229",
     "vite": "^6.0.6",
     "vite-plugin-mkcert": "^1.17.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

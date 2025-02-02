@@ -3,11 +3,11 @@ import { User } from './User';
 import { UUID } from './UUID';
 
 export interface ServerToClientEvents {
-  'room/created': Room;
-  'room/joined': User;
-  'room/leaved': User;
-  'room/deleted': UUID;
-  error: () => Promise<void>;
+  'room/created': (room: Room) => void;
+  'room/deleted': (id: UUID) => void;
+
+  'room/joined': (user: User) => void;
+  'room/leaved': (user: User) => void;
 }
 
 export interface ClientToServerEvents {

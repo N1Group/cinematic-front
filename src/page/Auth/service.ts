@@ -12,7 +12,9 @@ export const useAuthSignIn = () => {
         url: '/auth/signIn',
         method: 'POST',
         data,
-      }).then((res) => res.result),
+      })
+        .then((res) => res.result)
+        .catch(console.error),
   });
 
   return mutation;
