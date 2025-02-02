@@ -1,10 +1,9 @@
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { UserInfo } from '@/components/UserInfo';
-import { useRoomStore } from '@/page/Room/store';
-import { useCreateRoom } from '@/services/rooms';
 import { useGetUserProfile } from '@/services/user';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
+import { useRoomCreateSync } from '../../hooks/useRoomCreateSync';
 import { $Header } from './style';
 
 // type HeaderProps = {
@@ -16,14 +15,11 @@ import { $Header } from './style';
 export const Header = () => {
   const { pathname } = useLocation();
   const { data } = useGetUserProfile();
-  const { mutateAsync: createRoom } = useCreateRoom();
-  const setSelectedRoom = useRoomStore((state) => state.setSelectedRoom);
-  const nav = useNavigate();
+  const socket = useRoomCreateSync();
 
   const onCreateRoom = async () => {
-    const room = await createRoom();
-    setSelectedRoom(room);
-    nav(`/room/${room.id}`);
+    socket.emit('room/create');
+    console.log(socket.id);
   };
 
   return (

@@ -9,7 +9,7 @@ export const $Avatar = styled.div<AvatarProps>(
     justifyContent: 'center',
     alignItems: 'center',
   },
-  ({ url, ischat, isSystemMessage, size }) => ({
+  ({ url, isInChat: ischat, isSystemMessage, size }) => ({
     borderRadius: `${ischat ? '50%' : '8px'}`,
     width: `${size}px`,
     height: `${size}px`,

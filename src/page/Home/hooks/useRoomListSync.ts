@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 export const useRoomListSync = () => {
-  const socket = socketClient('/rooms');
+  const socket = socketClient();
   const queryClient = useQueryClient();
 
   useEffect(() => {

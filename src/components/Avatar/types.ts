@@ -1,6 +1,6 @@
 export interface AvatarProps {
   url?: string;
-  ischat?: boolean;
+  isInChat?: boolean;
   isSystemMessage?: boolean;
   size?: number;
 }
