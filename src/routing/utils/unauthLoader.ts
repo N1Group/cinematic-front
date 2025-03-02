@@ -1,8 +1,8 @@
 import { useUserStore } from '@/stores/user';
-import { redirect } from 'react-router';
+import { replace } from 'react-router';
 
 export const unauthRegister = () => {
   const user = useUserStore.getState().user;
 
-  return () => (!user ? redirect('/auth') : true);
+  return () => (!user ? replace('/auth') : true);
 };

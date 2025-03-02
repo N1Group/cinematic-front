@@ -1,6 +1,6 @@
 import { User } from '@/types/User';
 import { createCustomStore } from '@/utils/createCustomStore';
-import { redirect } from 'react-router';
+import { replace } from 'react-router';
 
 type UserStates = {
   user?: User;
@@ -18,6 +18,6 @@ export const useUserStore = createCustomStore({
   setUser: (user) => set({ user }),
   logout: () => {
     set({ user: undefined });
-    redirect('/');
+    replace('/');
   },
 }));

@@ -1,33 +1,50 @@
 import { Message } from '@/components/Message';
-import { useNavBlocker } from '@/hooks/useNavBlocker';
+import { Player } from '@/modules/Player';
+import { useGetAllMessages } from '@/services/chat';
+import { useCheckRoomStatus } from '@/services/rooms';
 import { useUserStore } from '@/stores/user';
+import { PanInfo } from 'framer-motion';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { Input } from '../../components/Input';
 import { useRoomSync } from './hooks/useRoomSyns';
-import { BackConfirmModal } from './modules/BackConfirmModal';
 import { useRoomStore } from './store';
-import { $Chat, $InputContainer, $MessageWrapper, $RoomWrapper, $Video } from './style';
+import { $Chat, $ChatResize, $InputContainer, $MessageWrapper, $RoomWrapper, $Video } from './style';
 
 export const Room = () => {
+  const { id } = useParams();
   const socket = useRoomSync();
+  const navigate = useNavigate();
 
-  const MessageWrapperRef = useRef<HTMLDivElement | null>(null);
-  const showBackConfirmModal = useRoomStore((state) => state.showBackConfirmModal);
   const user = useUserStore((state) => state.user);
   const roomMessages = useRoomStore((state) => state.roomMessages);
   const setMessages = useRoomStore((state) => state.setMessages);
-  const selectedRoom = useRoomStore((state) => state.selectedRoom);
-  const [messageText, setMessageText] = useState('');
+  const { data } = useGetAllMessages(id!);
+  const { status } = useCheckRoomStatus(id!);
 
-  const { proceed } = useNavBlocker(() => showBackConfirmModal(true), selectedRoom && selectedRoom?.members.length > 0);
+  const messageWrapperRef = useRef<HTMLDivElement | null>(null);
+  const bottomLineRef = useRef<HTMLDivElement>(null);
+  const [messageText, setMessageText] = useState('');
+  const [chatWidth, setChatWidth] = useState(400);
+  const chatRef = useRef<HTMLDivElement>(null);
+  const startX = useRef<number>(null);
+  const startWidth = useRef<number>(null);
 
   useEffect(() => {
-    setMessages([]);
-    showBackConfirmModal(false);
-    if (MessageWrapperRef.current) {
-      MessageWrapperRef.current.scroll(0, MessageWrapperRef.current.scrollHeight);
+    if (!data) return;
+    setMessages(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (status !== 'error') return;
+    navigate('/', { replace: true });
+  }, [status]);
+
+  useEffect(() => {
+    if (bottomLineRef.current) {
+      bottomLineRef.current!.scrollIntoView();
     }
-  }, []);
+  }, [roomMessages]);
 
   const onEnterPressed = (event: KeyboardEvent) => {
     if (event.code === 'Enter') {
@@ -36,13 +53,28 @@ export const Room = () => {
     }
   };
 
-  console.log(roomMessages);
+  const onChatResizeStart = (event: PointerEvent, info: PanInfo) => {
+    if (!chatRef.current) return;
+    event.stopPropagation();
+    event.preventDefault();
+    startX.current = info.point.x;
+    startWidth.current = chatRef.current.offsetWidth;
+  };
+
+  const onChatResize = (_: any, info: PanInfo) => {
+    if (startX.current === null || startWidth.current === null) return;
+    const newWidth = Math.max(300, Math.min(600, startWidth.current - (info.point.x - startX.current)));
+    setChatWidth(newWidth);
+  };
 
   return (
     <$RoomWrapper>
-      <$Video></$Video>
-      <$Chat>
-        <$MessageWrapper ref={MessageWrapperRef}>
+      <$Video>
+        <Player />
+      </$Video>
+      <$Chat ref={chatRef} style={{ width: chatWidth }}>
+        <$ChatResize onPan={onChatResize} onPanStart={onChatResizeStart} />
+        <$MessageWrapper ref={messageWrapperRef}>
           {roomMessages.map((message) => (
             <Message
               author={message.author.username}
@@ -51,6 +83,7 @@ export const Room = () => {
               text={message.content}
             />
           ))}
+          <div ref={bottomLineRef} />
         </$MessageWrapper>
         <$InputContainer>
           <Input
@@ -61,7 +94,6 @@ export const Room = () => {
           />
         </$InputContainer>
       </$Chat>
-      <BackConfirmModal onProceed={proceed} />
     </$RoomWrapper>
   );
 };
