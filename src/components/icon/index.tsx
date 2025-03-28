@@ -1,11 +1,16 @@
-import { FC } from 'react';
+import { FC, SVGAttributes } from 'react';
 import * as icons from './icons';
-import { IconProps } from './types';
 
+export type IconNames = keyof typeof icons;
 
+interface IconProps extends SVGAttributes<SVGElement> {
+  name: IconNames;
+  color?: string;
+  size?: number | string;
+}
 
-export const Icon: FC<IconProps> = ({ name }) => {
-  const Icons = { render: icons[name] };
+export const Icon: FC<IconProps> = ({ name, color = 'currentColor', size = 24, ...props }) => {
+  const Icons = { render: icons[name] as FC<SVGAttributes<SVGElement>> };
 
-  return <Icons.render />;
+  return <Icons.render color={color} width={size} height={size} {...props} />;
 };

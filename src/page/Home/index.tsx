@@ -1,12 +1,14 @@
-import { RoomCard } from '../../components/RoomCard';
-import { $RoomCardWrapper } from './style';
+import { useGetAllRooms } from '@/services/rooms';
+import { isNotEmptyArray } from '@/utils/isNotEmptyArray';
+import { RoomCard } from './components/RoomCard';
+import { $RoomCards } from './style';
 
 export const Home = () => {
+  const { data } = useGetAllRooms();
+  // const user = useUserStore((state) => state.user);
+  // const queryClient = useQueryClient();
+
   return (
-    <$RoomCardWrapper>
-      {[...Array(14)].map((_, index) => (
-        <RoomCard key={index} index={index} />
-      ))}
-    </$RoomCardWrapper>
+    <$RoomCards>{isNotEmptyArray(data) && data.map((room, index) => <RoomCard key={index} {...room} />)}</$RoomCards>
   );
 };

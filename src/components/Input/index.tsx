@@ -1,25 +1,32 @@
-import { FC, HTMLAttributes } from 'react';
-import { Icon } from '../icon';
-import { $Description, $InputTextWrapper, $InputWrapper, $Label, $input } from './style';
-interface Props extends HTMLAttributes<HTMLInputElement>  {
-  iconLeft?: string;
+import { forwardRef, InputHTMLAttributes } from 'react';
+import { Text } from '../Text';
+import { Icon, IconNames } from '../icon';
+import { $input, $InputTextWrapper, $InputWrapper } from './style';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  width: string;
   description?: string;
-  iconRight?: string;
-  height?: string;
+  iconLeft?: IconNames;
+  iconRight?: IconNames;
+  invalid?: boolean;
 }
 
-export const Input: FC<Props> = ({ iconLeft, iconRight, description, label, width, height }) => {
-  return (
-    <$InputTextWrapper>
-      {label && <$Label>{label}</$Label>}
-      <$InputWrapper width={width} height={height}>
-        {iconLeft && <Icon name='Plus' />}
-        <$input placeholder='Placeholder' />
-      </$InputWrapper>
-      {description && <$Description>{description}</$Description>}
-      {iconRight && <Icon name='Plus' />}
-    </$InputTextWrapper>
-  );
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, description, iconLeft, iconRight, invalid, ...props }, ref) => {
+    return (
+      <$InputTextWrapper>
+        {label && <Text size='body2'>{label}</Text>}
+        <$InputWrapper>
+          {iconLeft && <Icon name={iconLeft} />}
+          <$input className='text-body2' ref={ref} {...props} />
+          {iconRight && <Icon name={iconRight} />}
+        </$InputWrapper>
+        {description && (
+          <Text size='body2' color={invalid ? '#FF6262' : '#FFF'}>
+            {description}
+          </Text>
+        )}
+      </$InputTextWrapper>
+    );
+  },
+);

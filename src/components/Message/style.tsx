@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-const $MessageContainer = styled.div<{ isMessageAuthor?: boolean }>(
+const $MessageContainer = styled.div<{ isSendByUser?: boolean }>(
   {
     display: 'flex',
     width: '100%',
   },
-  ({ isMessageAuthor }) => ({
-    justifyContent: isMessageAuthor ? 'flex-end' : 'flex-start',
+  ({ isSendByUser }) => ({
+    justifyContent: isSendByUser ? 'flex-end' : 'flex-start',
   }),
 );
 
@@ -14,7 +14,7 @@ const $Message = styled.div<{ width?: string; opacity?: string }>(
   {
     display: 'flex',
     maxWidth: '320px',
-    width: '100%',
+    width: '80%',
     alignItems: 'flex-end',
     gap: '10px',
   },
@@ -28,7 +28,7 @@ const $MessageContent = styled.div<{ width?: string; opacity?: string }>(
   {
     padding: '8px',
     background: '#1F1F1F',
-    minHeight: '46px',
+    // minHeight: '46px',
     flex: '1',
     borderRadius: '8px',
   },
@@ -53,7 +53,7 @@ const $MessageText = styled.p<{ color?: '#FFA049' | '#FF4949' }>(
   {
     color: '#fff',
     fontSize: '14px',
-    marginTop: '2px',
+    // marginTop: '2px',
   },
   ({ color }) => ({
     color,
@@ -69,11 +69,11 @@ const $MessageSystem = styled.p({
 });
 
 export {
-  $MessageSystem,
-  $MessageContainer,
   $Message,
+  $MessageContainer,
   $MessageContent,
-  $MessageNameWrapper,
   $MessageName,
+  $MessageNameWrapper,
+  $MessageSystem,
   $MessageText,
 };

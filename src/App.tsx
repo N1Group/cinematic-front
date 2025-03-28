@@ -1,14 +1,24 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import RouterPage from './modules/RouterPage/RouterPage';
+import { useMemo } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import { getRoutes } from './routing/routes';
+import { useUserStore } from './stores/user';
 
-const App = () => {
-  const queryClient = new QueryClient();
+export const App = () => {
+  const user = useUserStore((state) => state.user);
+  const memoRoutes = useMemo(() => getRoutes(user), [user]);
+  const router = createBrowserRouter(memoRoutes);
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterPage />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 };
-
-export default App;

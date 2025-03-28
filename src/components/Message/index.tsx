@@ -1,28 +1,20 @@
 import { FC } from 'react';
-import {
-  $MessageSystem,
-  $MessageContainer,
-  $Message,
-  $MessageContent,
-  $MessageNameWrapper,
-  $MessageName,
-  $MessageText,
-} from './style';
 import { Avatar } from '../Avatar';
+import { $Message, $MessageContainer, $MessageContent, $MessageName, $MessageNameWrapper, $MessageText } from './style';
 import { MessageProps } from './types';
 
-
-
-export const Message: FC<MessageProps> = ({ isMessageAuthor, isSystemMessage, text, name, color, avatar }) => {
+export const Message: FC<MessageProps> = ({ author, text, color, avatar, isSendByUser }) => {
   return (
-    <$MessageContainer isMessageAuthor={isMessageAuthor}>
+    <$MessageContainer isSendByUser={isSendByUser}>
       <$Message>
-        {!isMessageAuthor && <Avatar url={avatar} isSystemMessage={isSystemMessage} ischat />}
+        {!isSendByUser && <Avatar url={avatar} isInChat />}
         <$MessageContent>
-          <$MessageNameWrapper>
-            {!isMessageAuthor && <$MessageName>{name}</$MessageName>}
-            {isSystemMessage && <$MessageSystem>Система</$MessageSystem>}
-          </$MessageNameWrapper>
+          {!isSendByUser && (
+            <$MessageNameWrapper>
+              <$MessageName>{author}</$MessageName>
+              {/* {isSystemMessage && <$MessageSystem>Система</$MessageSystem>} */}
+            </$MessageNameWrapper>
+          )}
           <$MessageText color={color}>{text}</$MessageText>
         </$MessageContent>
       </$Message>
